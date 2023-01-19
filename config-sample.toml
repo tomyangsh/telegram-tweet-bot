@@ -1,0 +1,8 @@
+[Telegram]
+name = "bot"
+api_id = 11111
+api_hash = "123abc"
+bot_token = "1111:AAA"
+
+[Twitter]
+Bearer_Token = "AAAA"

@@ -1,0 +1,3 @@
+config.toml
+*.session*
+*.pyc
