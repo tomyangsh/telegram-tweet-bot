@@ -30,7 +30,7 @@ async def send(chat_id, *content, disable_preview=False, reply_to=None):
         try:
             return await bot.send_video(chat_id, video, caption=text, reply_to_message_id=reply_to)
         except:
-            text += f" [Video]({video})"
+            text += f" [视频]({video})"
             return await bot.send_message(chat_id, text, disable_web_page_preview=True, reply_to_message_id=reply_to)
     elif image_set:
         image_set[0].caption = text
@@ -42,7 +42,7 @@ async def send(chat_id, *content, disable_preview=False, reply_to=None):
 async def process(chat_id, tweet, reply_to=None):
     disable_preview=True
     if not tweet.ok:
-        return await send(chat_id, "Can't get tweet from a protected account", reply_to=reply_to)
+        return await send(chat_id, "是🔓推！达咩desu", reply_to=reply_to)
     text = f"**{tweet.name}**"
     if tweet.extra_link:
         text += f"[\u200b]({tweet.extra_link})"
@@ -67,7 +67,7 @@ tweet_link_filter = filters.create(tweet_link_filter)
 
 @bot.on_message(filters.command('start'))
 async def start(client, message):
-    await send(message.chat.id, 'Send me a Tweet link (not profile link or anything else)\n\nTo know what else can this bot do, see [here](https://github.com/tomyangsh/telegram-tweet-bot#features)', disable_preview=True)
+    await send(message.chat.id, '请发送一条推文链接', disable_preview=True)
 
 @bot.on_message(tweet_link_filter)
 async def parse_tweet_link(client, message):
