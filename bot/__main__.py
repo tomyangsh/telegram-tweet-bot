@@ -67,7 +67,7 @@ tweet_link_filter = filters.create(tweet_link_filter)
 
 @bot.on_message(filters.command('start'))
 async def start(client, message):
-    await send(message.chat.id, 'Send me a Tweet link (not profile link or anything else)\n\nTo know what else can this bot do, see [here](https://github.com/tomyangsh/telegram-tweet-bot#features)', disable_preview=True)
+    await send(message.chat.id, 'Send me a Tweet link.\n\nFull user guide on [Github](https://github.com/tomyangsh/telegram-tweet-bot#features)', disable_preview=True)
 
 @bot.on_message(tweet_link_filter)
 async def parse_tweet_link(client, message):
