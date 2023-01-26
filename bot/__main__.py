@@ -61,7 +61,7 @@ async def process(chat_id, tweet, reply_to=None):
 
 async def tweet_link_filter(_, __, message):
     if message.text:
-        return re.match('https://twitter.com/\w+/status/\d+.*', message.text)
+        return re.match('https://.*twitter.com/\w+/status/\d+', message.text)
 
 tweet_link_filter = filters.create(tweet_link_filter)
 
@@ -71,7 +71,7 @@ async def start(client, message):
 
 @bot.on_message(tweet_link_filter)
 async def parse_tweet_link(client, message):
-    tweet_id = re.match('https://twitter.com/\w+/status/(\d+).*', message.text).group(1)
+    tweet_id = re.match('https://.*twitter.com/\w+/status/(\d+)', message.text).group(1)
     tweet = Tweet(tweet_id)
     await process(message.chat.id, tweet, reply_to=message.id)
 
