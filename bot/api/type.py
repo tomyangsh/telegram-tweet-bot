@@ -18,7 +18,7 @@ class Tweet():
             for i in data['data'].get('entities', {}).get('urls', []):
                 if not re.match('https://twitter.com/.+', i['expanded_url']):
                     self.extra_link = i.get('unwound_url', i['expanded_url'])
-                    domain = re.match('https?://(.+\.)?(.+)\..+', i.get('unwound_url', i['expanded_url'])).group(2).capitalize()
+                    domain = re.match('https?://(?:www\.)?([\w.-]+)', i.get('unwound_url', i['expanded_url'])).group(1)
                     text = re.sub(i['url'], f"[{domain}]({i.get('unwound_url', i['expanded_url'])})", text)
                 else:
                     text = re.sub(i['url'], '', text)
